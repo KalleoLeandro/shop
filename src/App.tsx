@@ -1,9 +1,23 @@
-import 'global.css';
+import { RouterProvider } from "react-router-dom";
+import './index.css';
+import { router } from "./routes";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Toaster } from "sonner";
+import { ThemeProvider } from "./components/theme/theme-provider";
 
-export function App() {  
+export function App() {
 
   return (
-    <h1>Hello World</h1>
+    <HelmetProvider>
+      <ThemeProvider storageKey="shop-theme" defaultTheme="system">
+        <Helmet
+          titleTemplate="%s | shop"
+        />
+        <Toaster richColors />
+        <RouterProvider router={router}>
+        </RouterProvider>
+      </ThemeProvider>
+    </HelmetProvider>
   )
 }
 
